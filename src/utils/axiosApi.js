@@ -8,8 +8,8 @@ export default {
             self.$dataApi({
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 method: 'post',
-                url: '/api/news/getdetail',
-                //url: 'api/news/getdetail?newsID='+id,
+                // url: '/api/news/getdetail',
+                url: 'api/news/getdetail?newsID='+id,
                 data: {
                     newsID:id
                 }

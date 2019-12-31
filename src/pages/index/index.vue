@@ -57,18 +57,19 @@
 
 <script>
 //import Util from '@/util/common.js'
-import Util from '@/utils/common'          //common
+import Util from '@/utils/axiosApi'          //common
 import card from '@/components/card'
 import tabBar from '@/common/tabBar'
 
 export default {
   data () {
     return {
+      Request: this.$requestApi.api.prototype, //请求头
       motto: 'Hello miniprograme',
 
       userInfo: {
         nickName: 'mpvue',
-        avatarUrl: 'http://mpvue.com/assets/logo.png'
+        avatarUrl: 'http://mpvue.com/assets/img/logo.0aaccdfd.png'
       },
       listData:'',
 
@@ -85,19 +86,50 @@ export default {
   mounted: function() {
     let t = this ;
     t.$nextTick(function() {
-      t.getTestData();
       t.getSetting();
-      //console.log(t.$dataApi);
-      t.getDetail();
 
+      t.getDetail();
+      // t.getTestData();
+
+      // t.indexShare();
+      // t.indexClassList();
+      
     });
   },
   methods: {
+
+    indexShare(){
+      console.log('indexShare');
+      var that  = this;
+      that.Request.indexShare('81419924-565e-4285-a1ee-1c13a786bc62')
+      .then(res =>{
+        //成功
+        console.log('indexShare',res)
+      })
+      .catch(res =>{
+        //失败
+        console.log(res)
+      })
+    },
+
+    indexClassList(){
+      var that  = this;
+      that.Request.indexClassList()
+      .then(res =>{
+        //成功
+        console.log('indexClassList',res.data)
+      })
+      .catch(res =>{
+        //失败
+        console.log('indexClassList',res)
+      })
+    },
+
     getDetail(){
       let t = this;
       Util.detail(t,'81419924-565e-4285-a1ee-1c13a786bc62').then((value) => { // 获取当前用户信息（会员）
         //t.newsList = value.data;
-        console.log(value.data);
+        console.log('getDetail',value.data);
       });
     },
 
